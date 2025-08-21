@@ -1,0 +1,181 @@
+/**
+ * Lightbox styles for Custom Gallery Carousel
+ */
+
+/* Lightbox container */
+.cgc-lightbox {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 9999;
+    overflow: hidden;
+}
+
+/* Lightbox content */
+.cgc-lightbox-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Lightbox image */
+.cgc-lightbox-image {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    border-radius: 5px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    transition: opacity 0.3s ease;
+}
+
+/* Close button */
+.cgc-lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background-color: #ffffff !important;
+    border: none !important;
+    border-radius: 50% !important;
+    cursor: pointer;
+    z-index: 10000;
+    transition: background-color 0.3s;
+    padding: 0px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: visible;
+}
+
+.cgc-lightbox-close img {
+    width: 20px;
+    height: 20px;
+    pointer-events: none; /* This ensures clicks pass through to the button */
+}
+
+.cgc-lightbox-close:hover {
+    background-color: rgba(240, 240, 240, 1);
+}
+
+/* Navigation buttons */
+.cgc-lightbox-prev,
+.cgc-lightbox-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background-color: #ffffff !important;
+    border: none !important;
+    border-radius: 50% !important;
+    cursor: pointer;
+    z-index: 10000;
+    transition: all 0.2s ease;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    outline: none !important;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    padding: 0px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cgc-lightbox-prev img,
+.cgc-lightbox-next img {
+    width: 20px;
+    height: 20px;
+    pointer-events: none; /* This ensures clicks pass through to the button */
+}
+
+.cgc-lightbox-prev {
+    left: 20px;
+}
+
+.cgc-lightbox-next {
+    right: 20px;
+}
+
+.cgc-lightbox-prev:hover,
+.cgc-lightbox-next:hover {
+    background-color: rgba(255, 255, 255, 1);
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+}
+
+.cgc-lightbox-prev:active,
+.cgc-lightbox-next:active {
+    transform: translateY(-50%) scale(0.95);
+    background-color: rgba(240, 240, 240, 1);
+}
+
+/* Add a subtle glow effect to make buttons more visible */
+.cgc-lightbox-prev::before,
+.cgc-lightbox-next::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    border-radius: 50%;
+    background: radial-gradient(rgba(255, 255, 255, 0.3), transparent 70%);
+    z-index: -1;
+}
+
+/* When lightbox is open, prevent scrolling */
+body.cgc-lightbox-open {
+    overflow: hidden;
+}
+
+/* Make carousel images clickable */
+.main-carousel .item img {
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+.main-carousel .item img:hover {
+    opacity: 0.9;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .cgc-lightbox-close {
+        top: 10px;
+        right: 10px;
+        width: 40px;
+        height: 40px;
+    }
+    
+    .cgc-lightbox-prev,
+    .cgc-lightbox-next {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .cgc-lightbox-prev {
+        left: 10px;
+    }
+    
+    .cgc-lightbox-next {
+        right: 10px;
+    }
+}
+
+/* Animation for image transitions */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.cgc-lightbox-image {
+    animation: fadeIn 0.3s ease;
+}

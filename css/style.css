@@ -1,0 +1,68 @@
+.owl-item img {
+    border-radius: 5px !important;
+}
+.main-carousel {
+	margin-bottom: 10px;
+}
+.owl-carousel .owl-nav .owl-next, .owl-carousel .owl-nav .owl-prev {
+    background: #ffffff !important;
+    width: 24px;
+    height: 24px;
+    border-radius: 50% !important;
+    position: absolute;
+    top: 43%;
+}
+.owl-carousel .owl-nav .owl-next {
+	right: 20px;
+}
+.owl-carousel .owl-nav .owl-prev {
+	left: 20px;
+}
+.owl-carousel .owl-nav button.owl-next span, .owl-carousel .owl-nav button.owl-prev span {
+    color: #000000 !important;
+    font-size: 0px;
+    padding: 0px !important;
+    line-height: normal !important;
+}
+.owl-carousel .owl-nav button span {
+	font-size: 0px;
+}
+.owl-carousel .owl-nav button.owl-next,
+.owl-carousel .owl-nav button.owl-prev {
+	font-family: "Font Awesome 6 Free" !important;
+    line-height: 24px !important; 	
+}
+.owl-carousel .owl-nav button.owl-next:before {
+    content: "\f054";
+	font-size: 16px;
+	color: #000000;
+}
+.owl-carousel .owl-nav button.owl-prev:before {
+	content: "\f053";
+	font-size: 16px;
+	color: #000000;
+}
+
+/* CSS for Thumbnail Carousel */
+.owl-carousel.thumbnail-carousel .thumb-item {
+    width: auto;
+    overflow: hidden;
+}
+.owl-carousel.thumbnail-carousel .thumb-item img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 10px !important;
+    border: solid 1px #000000;
+}
+/* Basic Pagination Styling */
+.owl-carousel button.owl-dot {
+    width: 12px;
+    height: 12px;
+    background-color: #000000;
+    border-radius: 50%;
+    margin: 2px;
+}
+.owl-carousel .owl-dots {
+	text-align: center;
+}
