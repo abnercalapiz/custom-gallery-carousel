@@ -62,6 +62,13 @@
 		<input type="checkbox" id="<?php echo $this->get_option_name('thumbnail_nav'); ?>" class="cgc-tick" name="<?php echo $this->get_option_name('thumbnail_nav'); ?>" value="1" <?php checked(1, get_option($this->get_option_name('thumbnail_nav'), 0)); ?>>
 		<label for="<?php echo $this->get_option_name('thumbnail_nav'); ?>" class="label font-bold">Enable Thumbnail Carousel Nav</label>
 	</div>
+	<div class="inner-container">
+		<label for="<?php echo $this->get_option_name('thumbnail_style'); ?>" class="label font-bold">Thumbnail Style</label>
+		<select id="<?php echo $this->get_option_name('thumbnail_style'); ?>" name="<?php echo $this->get_option_name('thumbnail_style'); ?>" class="cgc-field">
+			<option value="bottom" <?php selected('bottom', get_option($this->get_option_name('thumbnail_style'), 'bottom')); ?>>Bottom Style</option>
+			<option value="left" <?php selected('left', get_option($this->get_option_name('thumbnail_style'), 'bottom')); ?>>Left Align</option>
+		</select>
+	</div>
 
 
     <?php submit_button(); ?>

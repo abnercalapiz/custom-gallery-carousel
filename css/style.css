@@ -66,3 +66,93 @@
 .owl-carousel .owl-dots {
 	text-align: center;
 }
+
+/* Gallery Wrapper Styles */
+.cgc-gallery-wrapper {
+    width: 100%;
+    clear: both;
+}
+
+/* Left Thumbnail Style */
+.cgc-gallery-wrapper.thumbnail-style-left {
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+}
+
+.cgc-gallery-wrapper.thumbnail-style-left .cgc-thumbnails-container {
+    flex: 0 0 78px;
+    max-width: 78px;
+}
+
+.cgc-gallery-wrapper.thumbnail-style-left .cgc-main-container {
+    flex: 1;
+    min-width: 0;
+}
+
+.cgc-gallery-wrapper.thumbnail-style-left .thumbnail-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    overflow: hidden;
+}
+
+.cgc-gallery-wrapper.thumbnail-style-left .thumb-item {
+    flex-shrink: 0;
+}
+
+.cgc-gallery-wrapper.thumbnail-style-left .thumb-item img {
+    width: 78px;
+    height: 78px;
+    object-fit: cover;
+    cursor: pointer;
+    transition: opacity 0.3s ease, transform 0.2s ease;
+    display: block;
+    border-radius: 8px;
+}
+
+.cgc-gallery-wrapper.thumbnail-style-left .thumb-item:hover img {
+    opacity: 0.8;
+    transform: scale(1.05);
+}
+
+.cgc-gallery-wrapper.thumbnail-style-left .thumb-item.active img {
+    border: 1px solid #000;
+    opacity: 1;
+}
+
+/* Bottom Thumbnail Style (Default) */
+.cgc-gallery-wrapper.thumbnail-style-bottom .main-carousel {
+    margin-bottom: 10px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+    .cgc-gallery-wrapper.thumbnail-style-left {
+        flex-direction: column;
+    }
+    
+    .cgc-gallery-wrapper.thumbnail-style-left .cgc-thumbnails-container {
+        flex: 1 1 auto;
+        max-width: 100%;
+        margin-bottom: 10px;
+        order: 2; /* Show thumbnails below on mobile */
+    }
+    
+    .cgc-gallery-wrapper.thumbnail-style-left .cgc-main-container {
+        order: 1; /* Show main image first on mobile */
+    }
+    
+    .cgc-gallery-wrapper.thumbnail-style-left .thumbnail-list {
+        flex-direction: row;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding-bottom: 5px;
+        gap: 5px;
+    }
+    
+    .cgc-gallery-wrapper.thumbnail-style-left .thumb-item img {
+        width: 60px;
+        height: 60px;
+    }
+}

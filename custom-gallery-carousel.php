@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Custom Gallery Carousel
  * Description: Custom Gallery Carousel is a responsive image gallery built with Owl Carousel. It lets users define custom gallery fields and integrate seamlessly with WooCommerce galleries, offering optimized settings for mobile, tablet, and desktop devices.
- * Version: 1.3
+ * Version: 1.4
  * Author: Jezweb
  * Author URI: https://www.jezweb.com.au/
  * Plugin URI: /wp-admin/options-general.php?page=cgc_owl_custom_gallery_carousel
@@ -61,6 +61,7 @@ class Custom_Gallery_Carousel {
         add_option($this->get_option_name('main_nav'), 0);
         add_option($this->get_option_name('pagination'), 0);
         add_option($this->get_option_name('thumbnail_nav'), 0);
+        add_option($this->get_option_name('thumbnail_style'), 'bottom');
 
 
         register_setting('cgc_owl_custom_gallery_carousel_options_group', $this->get_option_name('field'), 'sanitize_text_field');
@@ -71,6 +72,7 @@ class Custom_Gallery_Carousel {
         register_setting('cgc_owl_custom_gallery_carousel_options_group', $this->get_option_name('main_nav'));
         register_setting('cgc_owl_custom_gallery_carousel_options_group', $this->get_option_name('pagination'));
         register_setting('cgc_owl_custom_gallery_carousel_options_group', $this->get_option_name('thumbnail_nav'));
+        register_setting('cgc_owl_custom_gallery_carousel_options_group', $this->get_option_name('thumbnail_style'), 'sanitize_text_field');
     }
 
 
@@ -109,6 +111,7 @@ class Custom_Gallery_Carousel {
                 update_option($this->get_option_name('main_nav'), isset($_POST[$this->get_option_name('main_nav')]) ? 1 : 0);
                 update_option($this->get_option_name('pagination'), isset($_POST[$this->get_option_name('pagination')]) ? 1 : 0);
                 update_option($this->get_option_name('thumbnail_nav'), isset($_POST[$this->get_option_name('thumbnail_nav')]) ? 1 : 0);
+                update_option($this->get_option_name('thumbnail_style'), sanitize_text_field($_POST[$this->get_option_name('thumbnail_style')]));
 
                 echo '<div class="updated"><p>Settings saved.</p></div>';
             } else {
@@ -175,6 +178,7 @@ class Custom_Gallery_Carousel {
             'main_nav'      => get_option($this->get_option_name('main_nav'), 0) == 1,
             'pagination'    => get_option($this->get_option_name('pagination'), 0) == 1,
             'thumbnail_nav' => get_option($this->get_option_name('thumbnail_nav'), 0) == 1,
+            'thumbnail_style' => get_option($this->get_option_name('thumbnail_style'), 'bottom'),
         ];
     }
 
