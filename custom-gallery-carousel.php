@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Custom Gallery Carousel
  * Description: Custom Gallery Carousel is a responsive image gallery built with Owl Carousel. It lets users define custom gallery fields and integrate seamlessly with WooCommerce galleries, offering optimized settings for mobile, tablet, and desktop devices.
- * Version: 1.4
+ * Version: 1.5
  * Author: Jezweb
  * Author URI: https://www.jezweb.com.au/
  * Plugin URI: /wp-admin/options-general.php?page=cgc_owl_custom_gallery_carousel
@@ -62,6 +62,9 @@ class Custom_Gallery_Carousel {
         add_option($this->get_option_name('pagination'), 0);
         add_option($this->get_option_name('thumbnail_nav'), 0);
         add_option($this->get_option_name('thumbnail_style'), 'bottom');
+        add_option($this->get_option_name('thumbnail_spacing'), 10);
+        add_option($this->get_option_name('show_image_title'), 0);
+        add_option($this->get_option_name('use_medium_large_thumb'), 0);
 
 
         register_setting('cgc_owl_custom_gallery_carousel_options_group', $this->get_option_name('field'), 'sanitize_text_field');
@@ -73,8 +76,10 @@ class Custom_Gallery_Carousel {
         register_setting('cgc_owl_custom_gallery_carousel_options_group', $this->get_option_name('pagination'));
         register_setting('cgc_owl_custom_gallery_carousel_options_group', $this->get_option_name('thumbnail_nav'));
         register_setting('cgc_owl_custom_gallery_carousel_options_group', $this->get_option_name('thumbnail_style'), 'sanitize_text_field');
+        register_setting('cgc_owl_custom_gallery_carousel_options_group', $this->get_option_name('thumbnail_spacing'), 'absint');
+        register_setting('cgc_owl_custom_gallery_carousel_options_group', $this->get_option_name('show_image_title'));
+        register_setting('cgc_owl_custom_gallery_carousel_options_group', $this->get_option_name('use_medium_large_thumb'));
     }
-
 
     private function get_option_name($key) {
         return 'cgc_owl_custom_gallery_carousel_' . $key;
@@ -112,6 +117,9 @@ class Custom_Gallery_Carousel {
                 update_option($this->get_option_name('pagination'), isset($_POST[$this->get_option_name('pagination')]) ? 1 : 0);
                 update_option($this->get_option_name('thumbnail_nav'), isset($_POST[$this->get_option_name('thumbnail_nav')]) ? 1 : 0);
                 update_option($this->get_option_name('thumbnail_style'), sanitize_text_field($_POST[$this->get_option_name('thumbnail_style')]));
+                update_option($this->get_option_name('thumbnail_spacing'), absint($_POST[$this->get_option_name('thumbnail_spacing')]));
+                update_option($this->get_option_name('show_image_title'), isset($_POST[$this->get_option_name('show_image_title')]) ? 1 : 0);
+                update_option($this->get_option_name('use_medium_large_thumb'), isset($_POST[$this->get_option_name('use_medium_large_thumb')]) ? 1 : 0);
 
                 echo '<div class="updated"><p>Settings saved.</p></div>';
             } else {
@@ -179,6 +187,9 @@ class Custom_Gallery_Carousel {
             'pagination'    => get_option($this->get_option_name('pagination'), 0) == 1,
             'thumbnail_nav' => get_option($this->get_option_name('thumbnail_nav'), 0) == 1,
             'thumbnail_style' => get_option($this->get_option_name('thumbnail_style'), 'bottom'),
+            'thumbnail_spacing' => absint(get_option($this->get_option_name('thumbnail_spacing'), 10)),
+            'show_image_title' => get_option($this->get_option_name('show_image_title'), 0) == 1,
+            'use_medium_large_thumb' => get_option($this->get_option_name('use_medium_large_thumb'), 0) == 1,
         ];
     }
 

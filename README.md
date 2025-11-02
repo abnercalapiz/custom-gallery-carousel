@@ -79,6 +79,10 @@ Navigate to **Settings > Custom Carousel** to configure:
 - **Main Nav**: Enable/disable navigation arrows
 - **Pagination**: Enable/disable dot navigation
 - **Thumbnail Nav**: Enable/disable thumbnail carousel navigation
+- **Thumbnail Style**: Choose between Bottom Style (default) or Left Align layout
+- **Thumbnail Spacing**: Set spacing between thumbnails (0-50px)
+- **Show Image Title**: Display image titles below images
+- **Enable Medium Large Thumbnail**: Use 768px wide images for better thumbnail quality
 
 ## Template Integration
 
@@ -137,6 +141,18 @@ The plugin uses jQuery and Owl Carousel. Ensure no conflicts with:
 - jQuery version compatibility
 
 ## Changelog
+
+### Version 1.5
+- Added Medium Large Thumbnail option for better image quality (768px wide)
+- Fixed bottom style layout not respecting thumbnail size settings
+- Improved checkbox settings saving functionality
+- Enhanced thumbnail display quality options
+
+### Version 1.4
+- Added thumbnail style options (Bottom Style and Left Align)
+- Added customizable thumbnail spacing (0-50px)
+- Added option to show/hide image titles
+- Improved thumbnail styling with uncropped display
 
 ### Version 1.3
 - Enhanced ACF detection with multiple fallback methods

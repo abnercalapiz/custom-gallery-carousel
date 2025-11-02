@@ -63,11 +63,25 @@
 		<label for="<?php echo $this->get_option_name('thumbnail_nav'); ?>" class="label font-bold">Enable Thumbnail Carousel Nav</label>
 	</div>
 	<div class="inner-container">
+		<input type="checkbox" id="<?php echo $this->get_option_name('show_image_title'); ?>" class="cgc-tick" name="<?php echo $this->get_option_name('show_image_title'); ?>" value="1" <?php checked(1, get_option($this->get_option_name('show_image_title'), 0)); ?>>
+		<label for="<?php echo $this->get_option_name('show_image_title'); ?>" class="label font-bold">Show Image Title</label>
+	</div>
+	<div class="inner-container">
 		<label for="<?php echo $this->get_option_name('thumbnail_style'); ?>" class="label font-bold">Thumbnail Style</label>
 		<select id="<?php echo $this->get_option_name('thumbnail_style'); ?>" name="<?php echo $this->get_option_name('thumbnail_style'); ?>" class="cgc-field">
 			<option value="bottom" <?php selected('bottom', get_option($this->get_option_name('thumbnail_style'), 'bottom')); ?>>Bottom Style</option>
 			<option value="left" <?php selected('left', get_option($this->get_option_name('thumbnail_style'), 'bottom')); ?>>Left Align</option>
 		</select>
+	</div>
+	<div class="inner-container">
+		<label for="<?php echo $this->get_option_name('thumbnail_spacing'); ?>" class="label font-bold">Thumbnail Spacing (px)</label>
+		<input type="number" id="<?php echo $this->get_option_name('thumbnail_spacing'); ?>" name="<?php echo $this->get_option_name('thumbnail_spacing'); ?>" value="<?php echo esc_attr(get_option($this->get_option_name('thumbnail_spacing'), 10)); ?>" min="0" max="50" class="cgc-field">
+		<p class="description">Set the spacing between thumbnails (0-50 pixels). Default is 10px.</p>
+	</div>
+	<div class="inner-container">
+		<input type="checkbox" id="<?php echo $this->get_option_name('use_medium_large_thumb'); ?>" class="cgc-tick" name="<?php echo $this->get_option_name('use_medium_large_thumb'); ?>" value="1" <?php checked(1, get_option($this->get_option_name('use_medium_large_thumb'), 0)); ?>>
+		<label for="<?php echo $this->get_option_name('use_medium_large_thumb'); ?>" class="label font-bold">Enable Medium Large Thumbnail</label>
+		<p class="description">Use WordPress medium_large size (768px wide) instead of default thumbnail size for better quality.</p>
 	</div>
 
 

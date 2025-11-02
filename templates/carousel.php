@@ -15,20 +15,26 @@ if (!empty($gallery) && is_array($gallery)) :
     // Only proceed if we have valid images
     if (!empty($valid_gallery)) :
         $thumbnail_style = isset($settings['thumbnail_style']) ? $settings['thumbnail_style'] : 'bottom';
+        $thumbnail_spacing = isset($settings['thumbnail_spacing']) ? $settings['thumbnail_spacing'] : 10;
+        $show_image_title = isset($settings['show_image_title']) ? $settings['show_image_title'] : false;
+        $use_medium_large_thumb = isset($settings['use_medium_large_thumb']) ? $settings['use_medium_large_thumb'] : false;
         $has_thumbnails = count($valid_gallery) > 1;
+        $thumb_size = $use_medium_large_thumb ? 'medium_large' : 'thumbnail';
+        // Debug: Check if medium large is enabled
+        // echo '<!-- Debug: use_medium_large_thumb = ' . ($use_medium_large_thumb ? 'true' : 'false') . ', thumb_size = ' . $thumb_size . ' -->';
 ?>
 
 <?php if ($thumbnail_style === 'left' && $has_thumbnails) : ?>
     <!-- Left Aligned Layout -->
-    <div class="cgc-gallery-wrapper thumbnail-style-left">
+    <div class="cgc-gallery-wrapper thumbnail-style-left" style="gap: <?php echo esc_attr($thumbnail_spacing); ?>px;">
         <div class="cgc-thumbnails-container">
-            <div class="thumbnail-list">
+            <div class="thumbnail-list" style="gap: <?php echo esc_attr($thumbnail_spacing); ?>px;">
             <?php 
             $max_thumbnails = 8;
             $thumbnail_count = 0;
             foreach ($valid_gallery as $index => $image) :
                 if ($thumbnail_count >= $max_thumbnails) break;
-                $thumb_src = wp_get_attachment_image_src($image['ID'], 'thumbnail');
+                $thumb_src = wp_get_attachment_image_src($image['ID'], $thumb_size);
                 if ($thumb_src && isset($thumb_src[0])) {
                     $thumb_url = esc_url($thumb_src[0]);
                     $thumb_alt = esc_attr(get_post_meta($image['ID'], '_wp_attachment_image_alt', true));
@@ -55,9 +61,13 @@ if (!empty($gallery) && is_array($gallery)) :
                 <?php foreach ($valid_gallery as $index => $image) :
                     $full_image_url = esc_url(wp_get_attachment_image_src($image['ID'], 'full')[0]);
                     $alt_text = esc_attr(get_post_meta($image['ID'], '_wp_attachment_image_alt', true));
+                    $image_title = esc_html(get_the_title($image['ID']));
                     ?>
                     <div class="item" data-index="<?php echo esc_attr($index); ?>">
                         <img src="<?php echo $full_image_url; ?>" alt="<?php echo $alt_text; ?>" data-index="<?php echo esc_attr($index); ?>" class="lightbox-image">
+                        <?php if ($show_image_title && !empty($image_title)) : ?>
+                            <div class="cgc-image-title"><?php echo $image_title; ?></div>
+                        <?php endif; ?>
                     </div>
                 <?php endforeach; ?>
             </div>
@@ -70,9 +80,13 @@ if (!empty($gallery) && is_array($gallery)) :
             <?php foreach ($valid_gallery as $index => $image) :
                 $full_image_url = esc_url(wp_get_attachment_image_src($image['ID'], 'full')[0]);
                 $alt_text = esc_attr(get_post_meta($image['ID'], '_wp_attachment_image_alt', true));
+                $image_title = esc_html(get_the_title($image['ID']));
                 ?>
                 <div class="item" data-index="<?php echo esc_attr($index); ?>">
                     <img src="<?php echo $full_image_url; ?>" alt="<?php echo $alt_text; ?>" data-index="<?php echo esc_attr($index); ?>" class="lightbox-image">
+                    <?php if ($show_image_title && !empty($image_title)) : ?>
+                        <div class="cgc-image-title"><?php echo $image_title; ?></div>
+                    <?php endif; ?>
                 </div>
             <?php endforeach; ?>
         </div>
@@ -80,7 +94,7 @@ if (!empty($gallery) && is_array($gallery)) :
         <?php if ($has_thumbnails) : ?>
         <div class="owl-carousel thumbnail-carousel">
         <?php foreach ($valid_gallery as $index => $image) :
-            $thumb_src = wp_get_attachment_image_src($image['ID'], 'thumbnail');
+            $thumb_src = wp_get_attachment_image_src($image['ID'], $thumb_size);
             if ($thumb_src && isset($thumb_src[0])) {
                 $thumb_url = esc_url($thumb_src[0]);
                 $thumb_alt = esc_attr(get_post_meta($image['ID'], '_wp_attachment_image_alt', true));
@@ -132,7 +146,7 @@ jQuery(document).ready(function($) {
     // Initialize thumbnail carousel for bottom style only
     if ($('.thumbnail-carousel').length && hasMultipleImages && thumbnailStyle !== 'left') {
         var thumbnailOptions = {
-            margin: 10,
+            margin: <?php echo esc_js($thumbnail_spacing); ?>,
             loop: false,
             dots: false,
             nav: <?php echo $settings['thumbnail_nav'] ? 'true' : 'false'; ?>,

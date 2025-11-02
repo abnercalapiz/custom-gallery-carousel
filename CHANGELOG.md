@@ -5,6 +5,34 @@ All notable changes to Custom Gallery Carousel will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5] - 2025-01-02
+
+### Added
+- Medium Large Thumbnail option to use WordPress's 768px wide images
+- New settings option "Enable Medium Large Thumbnail" for better image quality
+- Dynamic thumbnail size selection based on user preference
+
+### Fixed
+- Bottom style layout not respecting thumbnail size setting
+- Checkbox settings not saving properly on form submission
+
+### Improved
+- Thumbnail display quality with option to use larger images
+- Settings handling for all checkbox options
+
+## [1.4] - 2025-01-01
+
+### Added
+- Thumbnail style options: Bottom Style (default) and Left Align
+- Customizable thumbnail spacing (0-50px)
+- Show/hide image titles option
+- Left-aligned thumbnail layout for desktop view
+
+### Improved
+- Thumbnail styling with uncropped display (object-fit: contain)
+- Responsive thumbnail layouts for different screen sizes
+- CSS organization and styling enhancements
+
 ## [1.3] - 2025-01-21
 
 ### Added
